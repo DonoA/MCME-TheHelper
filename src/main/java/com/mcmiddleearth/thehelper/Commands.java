@@ -100,6 +100,20 @@ public class Commands implements TabExecutor{
                                 return true;
                             }
                             return false;
+                        }else if(args[0].equalsIgnoreCase("command")&&args.length>1){
+                            String cmd = args[1].replaceAll("/", "");
+                            for(Plugin plug : Bukkit.getServer().getPluginManager().getPlugins()){
+                                if(plug.getDescription().getCommands().containsKey(cmd)){
+                                    player.sendMessage(ChatColor.GREEN + cmd + " info:");
+                                    player.sendMessage(ChatColor.YELLOW + "Plugin: " + ChatColor.BLUE + plug.getName());
+                                    for(String key : plug.getDescription().getCommands().get(cmd).keySet()){
+                                        player.sendMessage(ChatColor.YELLOW + key + ": " + 
+                                                ChatColor.BLUE + plug.getDescription().getCommands().get(cmd).get(key));
+                                    }
+                                }
+                            }
+                            player.sendMessage("no such command!");
+                            return true;
                         }else{
                             Plugin p = Bukkit.getServer().getPluginManager().getPlugin(args[0]);
                             if(p == null){
@@ -110,9 +124,7 @@ public class Commands implements TabExecutor{
                             player.sendMessage(ChatColor.AQUA + p.getName());
                             player.sendMessage("===========================");
                             player.sendMessage(ChatColor.YELLOW + "Version: " + ChatColor.DARK_GREEN + p.getDescription().getVersion());
-                            player.sendMessage(ChatColor.YELLOW + "Description: " + ChatColor.DARK_GREEN + p.getDescription().getDescription());
-                            //player.sendMessage(ChatColor.YELLOW + "Config: " + ChatColor.DARK_GREEN + p.getConfig().toString());
-                            player.sendMessage(ChatColor.YELLOW + "Commands: ");
+                            player.sendMessage(ChatColor.YELLOW + "Description: " + ChatColor.DARK_GREEN + p.getDescription().getDescription());                            player.sendMessage(ChatColor.YELLOW + "Commands: ");
                             for(String s : p.getDescription().getCommands().keySet()){
                                 String cmd;
                                 if(p.getDescription().getCommands().get(s).containsKey("description")){
@@ -143,7 +155,7 @@ public class Commands implements TabExecutor{
         if(command.getName().equalsIgnoreCase("helper")){
             return Arrays.asList(new String[] {"teamspeak", "forums", "textures", "ranks", "servers", "dynmap", "guide", "rules"});
         }else if(command.getName().equalsIgnoreCase("devinfo")){
-            List<String> tabs = new ArrayList<>(Arrays.asList(new String[] {"versions", "player"}));
+            List<String> tabs = new ArrayList<>(Arrays.asList(new String[] {"versions", "player", "logauth"}));
             for(Plugin p : Bukkit.getPluginManager().getPlugins()){
                 tabs.add(p.getName());
             }

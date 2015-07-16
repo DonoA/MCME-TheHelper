@@ -1,5 +1,6 @@
 TheHelper
 =========
+[![Build Status](https://travis-ci.org/DonoA/MCME-TheHelper.svg?branch=master)](https://travis-ci.org/DonoA/MCME-TheHelper)
 
 <i>In-game player helper</i><br/>
 <br/>

@@ -38,7 +38,6 @@ public class Commands implements TabExecutor{
                if(args.length > 0){
                    if(args[0].equalsIgnoreCase("teamspeak")||args[0].equalsIgnoreCase("ts")){
                        player.sendMessage(THccm+"TeamSpeak is how mcme communicates on projects. Download TeamSpeak 3 here: " + TheHelper.pluginInstance.urls.get(args[0].toLowerCase()));
-                       player.sendMessage(THccm+"To connect to TeamSpeak, click here: " + THccl + "http://tinyurl.com/nuclz3f/?nickname="+player.getName());
                        return true;
                    }
                    else if(args[0].equalsIgnoreCase("forums")){
@@ -60,7 +59,6 @@ public class Commands implements TabExecutor{
                    else if(args[0].equalsIgnoreCase("dynmap")||args[0].equalsIgnoreCase("map")){
                        player.sendMessage(THccm+"The Dynmap is a useful map to find your way on the server");
                        player.sendMessage(THccm+"BuildServer Dynmap: " + THccl + TheHelper.pluginInstance.urls.get("dynmapb"));
-                       player.sendMessage(THccm+"FreeBuildServer Dynmap: " + THccl + TheHelper.pluginInstance.urls.get("dynmapfb"));
                        return true;
                    }
                    else if(args[0].equalsIgnoreCase("newplayerguide")||args[0].equalsIgnoreCase("guide")){

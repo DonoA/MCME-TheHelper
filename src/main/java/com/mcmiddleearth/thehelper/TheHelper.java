@@ -17,9 +17,9 @@ public class TheHelper extends JavaPlugin {
     
     @Override
     public void onEnable(){
-        Servlet server = new Servlet(8800);
-        server.start();
         this.saveDefaultConfig();
+        Servlet server = new Servlet(this.getConfig().getInt("servletPort"), this.getConfig().getBoolean("errorsOnly"));
+        server.start();
         FileConfiguration config = this.getConfig();
         pluginInstance=this;
         getCommand("helper").setExecutor(new Commands());

@@ -5,8 +5,9 @@ url:
     ranks: http://www.mcmiddleearth.com/wiki/ranks-and-duties/
     servers: http://www.mcmiddleearth.com/resources/9/
     dynmapb: http://build.mcmiddleearth.com:8123
-    dynmapfb: http://freebuild.mcmiddleearth.com:8123
     newplayerguide: http://www.mcmiddleearth.com/pages/new-player-guide/
     guide: http://www.mcmiddleearth.com/pages/new-player-guide/
     rules: http://www.mcmiddleearth.com/help/terms
 welcomeMSG: false
+servletPort: 8800
+errorsOnly: true

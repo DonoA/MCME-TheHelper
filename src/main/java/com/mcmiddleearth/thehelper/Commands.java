@@ -153,7 +153,7 @@ public class Commands implements TabExecutor{
         if(command.getName().equalsIgnoreCase("helper")){
             return Arrays.asList(new String[] {"teamspeak", "forums", "textures", "ranks", "servers", "dynmap", "guide", "rules"});
         }else if(command.getName().equalsIgnoreCase("devinfo")){
-            List<String> tabs = new ArrayList<>(Arrays.asList(new String[] {"versions", "player", "logauth"}));
+            List<String> tabs = new ArrayList<>(Arrays.asList(new String[] {"versions", "player", "logauth", "command"}));
             for(Plugin p : Bukkit.getPluginManager().getPlugins()){
                 tabs.add(p.getName());
             }

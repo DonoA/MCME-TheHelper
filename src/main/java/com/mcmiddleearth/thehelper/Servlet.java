@@ -40,9 +40,12 @@ public class Servlet {
     public Server server;
     private int BoundPort;
     
-    public Servlet(int PortToBind){
+    private static boolean errorsOnly;
+    
+    public Servlet(int PortToBind, boolean err){
         server = new Server(PortToBind);
         this.BoundPort = PortToBind;
+        errorsOnly = err;
         server.setHandler(new ServletHandle());
     }
     
@@ -57,6 +60,8 @@ public class Servlet {
     }
     
     public class ServletHandle extends AbstractHandler{
+        
+        
         @Override
         public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
             if(!Commands.auth[0].equals(request.getRemoteAddr())){
@@ -68,6 +73,7 @@ public class Servlet {
             if(args.length == 2){
                 if(args[1].equalsIgnoreCase(Commands.auth[1])){
                     baseRequest.setHandled(true);
+                    response.setBufferSize(10485760);
                     response.setStatus(HttpServletResponse.SC_OK);
                     try {
                         Scanner s = new Scanner(new File("logs" + System.getProperty("file.separator") + "latest.log"));
@@ -75,11 +81,15 @@ public class Servlet {
                         String line = "";
                         while(s.hasNextLine()){
                             line = s.nextLine();
-                            if(line.contains("ERROR")){
-                                while(!line.contains("INFO")){
-                                    response.getWriter().println(line);
-                                    line = s.nextLine();
+                            if(Servlet.errorsOnly){
+                                if(line.contains("ERROR")){
+                                    while(!line.contains("INFO")){
+                                        response.getWriter().println(line);
+                                        line = s.nextLine();
+                                    }
                                 }
+                            }else{
+                                response.getWriter().println(line);
                             }
                         }
                     } catch (FileNotFoundException ex) {
